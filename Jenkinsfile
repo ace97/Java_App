@@ -1,4 +1,4 @@
-@Library('my-shared-library')
+@Library('my-shared-library') _
 
 pipeline{
 
@@ -20,7 +20,7 @@ pipeline{
             steps{
             gitCheckout(
                 branch: "main",
-                url: "https://github.com/praveen1994dec/Java_app_3.0.git"
+                url: "https://github.com/ace97/Java_App.git"
             )
             }
         }
@@ -70,6 +70,14 @@ pipeline{
                script{
                    
                    mvnBuild()
+               }
+            }
+        }
+        stage('Upoload JAR to JFrog : Python'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+                   jarPush()
                }
             }
         }
